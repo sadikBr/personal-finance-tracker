@@ -1,4 +1,4 @@
-package com.brahimsadik;
+package com.brahimsadik.personalFinanceTracker;
 
 public class Main {
     public static void main(String[] args) {

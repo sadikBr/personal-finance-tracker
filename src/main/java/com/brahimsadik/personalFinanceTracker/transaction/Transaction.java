@@ -1,4 +1,4 @@
-package com.brahimsadik.personalFinanceTracker;
+package com.brahimsadik.personalFinanceTracker.transaction;
 
 import java.time.LocalDate;
 import java.util.Date;
