@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Transaction {
-    public
-        long id;
+    private
+        final long id;
         String description;
         double amount;
         LocalDate date;
@@ -13,7 +13,7 @@ public class Transaction {
         String category; // (e.g., "Food", "Salary", "Rent")
 
     public Transaction() {
-        this.id = new Date().getTime();
+        this.id = 1;
     }
 
     public String getDescription() {
