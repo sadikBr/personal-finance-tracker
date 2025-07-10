@@ -5,6 +5,7 @@ import com.brahimsadik.personalFinanceTracker.financialManager.FinancialManager;
 import com.brahimsadik.personalFinanceTracker.transaction.Transaction;
 import com.brahimsadik.personalFinanceTracker.transaction.TransactionType;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -72,18 +73,24 @@ public class Main {
 
                     DisplayManager.printSpacer();
                     System.out.println(type +" - "+ category +" - "+ description +" - "+ amount);
-                    FinancialManager.addTransaction(transaction);
+                    try {
+                        FinancialManager.addTransaction(transaction);
+                    } catch (IOException e) {
+                        System.out.println("There was problem saving this transaction to the file system.");
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 3:
                     ArrayList<Transaction> transactions = FinancialManager.getAllTransactions();
-                    DisplayManager.printSpacer();
 
                     if (transactions.isEmpty()) {
+                        DisplayManager.printSpacer();
                         DisplayManager.printNoTransactionsMessage();
                         break;
                     }
 
                     for (Transaction trans : transactions) {
+                        DisplayManager.printSpacer();
                         DisplayManager.printTransaction(trans);
                     }
 

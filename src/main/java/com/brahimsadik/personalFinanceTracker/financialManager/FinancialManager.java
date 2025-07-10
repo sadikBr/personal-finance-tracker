@@ -4,12 +4,13 @@ import com.brahimsadik.personalFinanceTracker.persistenceManager.PersistenceMana
 import com.brahimsadik.personalFinanceTracker.transaction.Transaction;
 import com.brahimsadik.personalFinanceTracker.transaction.TransactionType;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class FinancialManager {
     private static final ArrayList<Transaction> transactions = PersistenceManager.loadTransactions();
 
-    public static void addTransaction(Transaction transaction) {
+    public static void addTransaction(Transaction transaction) throws IOException {
         FinancialManager.transactions.add(transaction);
         PersistenceManager.saveTransaction(transaction);
     }

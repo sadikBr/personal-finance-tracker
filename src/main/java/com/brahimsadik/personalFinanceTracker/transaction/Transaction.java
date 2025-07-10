@@ -16,6 +16,10 @@ public class Transaction {
         this.id = UUID.randomUUID().toString();
     }
 
+    public Transaction(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return this.id;
     }
