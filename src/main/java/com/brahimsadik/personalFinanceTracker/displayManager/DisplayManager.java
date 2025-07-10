@@ -1,9 +1,11 @@
 package com.brahimsadik.personalFinanceTracker.displayManager;
 
+import com.brahimsadik.personalFinanceTracker.transaction.Transaction;
+
 public class DisplayManager {
 
     public static void printApplicationName() {
-        System.out.println("============== Personal Finance Tracker ==============");
+        System.out.println("=================== Personal Finance Tracker ===================");
     }
 
     public static void displayMenuOptions() {
@@ -21,7 +23,7 @@ public class DisplayManager {
     }
 
     public static void printSpacer() {
-        System.out.println("======================================================");
+        System.out.println("================================================================");
     }
 
     public static void printDescriptionPrompt() {
@@ -44,5 +46,13 @@ public class DisplayManager {
         System.out.println("1. Income");
         System.out.println("2. Expense");
         System.out.print("Transaction Type: ");
+    }
+
+    public static void printTransaction(Transaction transaction) {
+        System.out.printf("""
+                Transaction ID: %s
+                Transaction Description: %s
+                A %s %s transaction with amount %.2f (MAD) processed on %s""", transaction.getId(), transaction.getDescription(), transaction.getCategory(), transaction.getType(), transaction.getAmount(), transaction.getDate());
+        System.out.println();
     }
 }

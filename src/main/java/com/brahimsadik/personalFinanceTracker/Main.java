@@ -6,6 +6,7 @@ import com.brahimsadik.personalFinanceTracker.transaction.Transaction;
 import com.brahimsadik.personalFinanceTracker.transaction.TransactionType;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -14,10 +15,20 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
 
+        DisplayManager.printSpacer();
         DisplayManager.printApplicationName();
-        while (choice == 0) {
+        while (choice != 7) {
+            DisplayManager.printSpacer();
             DisplayManager.displayMenuOptions();
-            choice = scanner.nextInt(); scanner.nextLine();
+
+            try {
+                choice = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                DisplayManager.printSpacer();
+                System.out.println("The choice should not be a non numerical value.");
+            } finally {
+                scanner.nextLine();
+            }
 
             switch (choice) {
                 case 1:
@@ -60,16 +71,29 @@ public class Main {
                             .setDate(LocalDate.now());
 
                     DisplayManager.printSpacer();
-                    System.out.println(type +" "+ category +" "+ description +" "+ amount);
+                    System.out.println(type +" - "+ category +" - "+ description +" - "+ amount);
                     FinancialManager.addTransaction(transaction);
                     break;
                 case 3:
+                    ArrayList<Transaction> transactions = FinancialManager.getAllTransactions();
+
+                    if (transactions.isEmpty()) {
+                        DisplayManager.printSpacer();
+                        System.out.println("You don't have any transactions yet. Create one to start.");
+                        break;
+                    }
+
+                    for (Transaction trans : transactions) {
+                        DisplayManager.printSpacer();
+                        DisplayManager.printTransaction(trans);
+                    }
+
+                    break;
                 case 4:
                 case 5:
                 case 6:
                     DisplayManager.printSpacer();
                     System.out.println("This will be implemented soon.");
-                    DisplayManager.printSpacer();
                     break;
                 case 7:
                     DisplayManager.printSpacer();
@@ -78,9 +102,7 @@ public class Main {
                     break;
                 default:
                     DisplayManager.printSpacer();
-                    System.out.println("Please enter a valid choice.");
-                    DisplayManager.printSpacer();
-                    choice = 0;
+                    System.out.println("Please enter a valid choice (1-7).");
                     break;
             }
         }
