@@ -1,6 +1,11 @@
 package com.brahimsadik.personalFinanceTracker.displayManager;
 
+import com.brahimsadik.personalFinanceTracker.financialManager.FinancialManager;
 import com.brahimsadik.personalFinanceTracker.transaction.Transaction;
+import com.brahimsadik.personalFinanceTracker.transaction.TransactionType;
+import org.w3c.dom.ls.LSOutput;
+
+import java.util.ArrayList;
 
 public class DisplayManager {
 
@@ -53,6 +58,31 @@ public class DisplayManager {
                 Transaction ID: %s
                 Transaction Description: %s
                 A %s %s transaction with amount %.2f (MAD) processed on %s""", transaction.getId(), transaction.getDescription(), transaction.getCategory(), transaction.getType(), transaction.getAmount(), transaction.getDate());
+        System.out.println();
+    }
+
+    public static void printNoTransactionsMessage() {
+        System.out.println("You don't have any transactions yet. Create one to get Started.");
+    }
+
+    public static void printTransactionsSummary() {
+        ArrayList<Transaction> transactions = FinancialManager.getAllTransactions();
+
+        if (transactions.isEmpty()) {
+            DisplayManager.printNoTransactionsMessage();
+            return;
+        }
+
+        int incomeTransactionsNumber = FinancialManager.getTheNumberOfTransactionsByType(TransactionType.INCOME);
+        double totalIncome = FinancialManager.getTotalOfType(TransactionType.INCOME);
+
+        int expenseTransactionsNumber = FinancialManager.getTheNumberOfTransactionsByType(TransactionType.EXPENSE);
+        double totalExpense = FinancialManager.getTotalOfType(TransactionType.EXPENSE);
+
+        System.out.printf("""
+                - You have %d INCOME transactions with a total of %.2f (MAD)
+                - You have %d EXPENSE transactions with a total of %.2f (MAD)
+                - Your total balance is: %.2f (MAD)""", incomeTransactionsNumber, totalIncome, expenseTransactionsNumber, totalExpense, FinancialManager.getTotalBalance());
         System.out.println();
     }
 }

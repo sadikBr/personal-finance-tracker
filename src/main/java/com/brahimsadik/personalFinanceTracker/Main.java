@@ -76,20 +76,22 @@ public class Main {
                     break;
                 case 3:
                     ArrayList<Transaction> transactions = FinancialManager.getAllTransactions();
+                    DisplayManager.printSpacer();
 
                     if (transactions.isEmpty()) {
-                        DisplayManager.printSpacer();
-                        System.out.println("You don't have any transactions yet. Create one to start.");
+                        DisplayManager.printNoTransactionsMessage();
                         break;
                     }
 
                     for (Transaction trans : transactions) {
-                        DisplayManager.printSpacer();
                         DisplayManager.printTransaction(trans);
                     }
 
                     break;
                 case 4:
+                    DisplayManager.printSpacer();
+                    DisplayManager.printTransactionsSummary();
+                    break;
                 case 5:
                 case 6:
                     DisplayManager.printSpacer();
