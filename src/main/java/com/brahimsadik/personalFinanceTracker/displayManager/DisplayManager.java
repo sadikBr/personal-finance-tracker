@@ -23,4 +23,26 @@ public class DisplayManager {
     public static void printSpacer() {
         System.out.println("======================================================");
     }
+
+    public static void printDescriptionPrompt() {
+        System.out.println("Please Enter the description");
+        System.out.print("Description: ");
+    }
+
+    public static void printAmountPrompt() {
+        System.out.println("Please Enter the transaction amount");
+        System.out.print("Amount: ");
+    }
+
+    public static void printTransactionCategory() {
+        System.out.println("Please enter the category of this transaction");
+        System.out.print("Category (e.g. Food, Salary, Rent...): ");
+    }
+
+    public static void printTransactionTypePrompt() {
+        System.out.println("Please choose the type of the transaction");
+        System.out.println("1. Income");
+        System.out.println("2. Expense");
+        System.out.print("Transaction Type: ");
+    }
 }

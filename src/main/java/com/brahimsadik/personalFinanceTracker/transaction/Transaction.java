@@ -1,11 +1,11 @@
 package com.brahimsadik.personalFinanceTracker.transaction;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.UUID;
 
 public class Transaction {
     private
-        final long id;
+        final String id;
         String description;
         double amount;
         LocalDate date;
@@ -13,7 +13,11 @@ public class Transaction {
         String category; // (e.g., "Food", "Salary", "Rent")
 
     public Transaction() {
-        this.id = 1;
+        this.id = UUID.randomUUID().toString();
+    }
+
+    public String getId() {
+        return this.id;
     }
 
     public String getDescription() {

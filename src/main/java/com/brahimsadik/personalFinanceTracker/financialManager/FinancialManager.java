@@ -10,6 +10,7 @@ public class FinancialManager {
 
     public static void addTransaction(Transaction transaction) {
         FinancialManager.transactions.add(transaction);
+        System.out.println("Transaction with id " + transaction.getId() + " has been saved in memory.");
     }
 
     public static ArrayList<Transaction> getAllTransactions() {
